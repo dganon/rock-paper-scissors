@@ -59,18 +59,16 @@ function playRound(humanChoice, computerChoice){
         humanScore++;
     }
     else if (humanChoice === computerChoice){
-        console.log("It's a tie. Try again!");
-    }
-    else {
-        console.log("Not valid. Try again!");
+        results.append("It's a tie. Try again!");
     }
 }
 
+/*
 function playGame(){
     console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
 
-    for(i=1; i<6; i++){
-        console.log("★☆★☆★☆★ ROUND " + i + " ★☆★☆★☆★");
+    for(count; count<6; count++){
+        console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
         humanSelection = getHumanChoice();
         computerSelection = getComputerChoice();
         console.log("Human: " + humanSelection + " vs. " + "Computer: " + computerSelection);
@@ -82,6 +80,7 @@ function playGame(){
 
     checkScore();
 }
+*/
 
 function checkScore(){
     console.log("★☆★☆★☆★ RESULTS ★☆★☆★☆★");
@@ -98,16 +97,50 @@ function checkScore(){
     console.log("★☆★☆★☆★ END ROUND ★☆★☆★☆★");
 }
 
+function playGame(humanSelection) {
+    if(count < 6) {
+        let computerSelection = getComputerChoice();
+        let versus = "Human: " + humanSelection + " vs. " + "Computer: " + computerSelection;
+
+        console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
+        //console.log("Human: " + humanSelection + " vs. " + "Computer: " + computerSelection);
+        console.log("Human: " + humanScore + " vs. " + "Computer: " + computerScore);
+
+        
+        playRound(humanSelection, computerSelection);
+
+        count++;
+    }
+    else {
+        results.append("game over");
+    }
+}
+
+function updateDiv(){
+
+}
+
 let humanScore = 0;
 let computerScore = 0;
+let count = 1;
+const clear = "";
 
 let humanSelection;
 let computerSelection;
 
+console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
+
+const results = document.querySelector("#result");
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playGame();
+        let btnTxt = button.textContent.toLowerCase();
+
+        playGame(btnTxt);
     });
 });
+
+
+
+//playGame();
