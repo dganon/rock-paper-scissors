@@ -83,7 +83,7 @@ function playGame(){
 */
 
 function checkScore(){
-    console.log("★☆★☆★☆★ RESULTS ★☆★☆★☆★");
+    console.log("★☆★ RESULTS ★☆★");
     console.log("Human: " + humanScore + " Computer: " + computerScore)
     if(humanScore < computerScore){
         console.log("Sorry, human. Computer wins this game!");
@@ -100,24 +100,35 @@ function checkScore(){
 function playGame(humanSelection) {
     if(count < 6) {
         let computerSelection = getComputerChoice();
-        let versus = "Human: " + humanSelection + " vs. " + "Computer: " + computerSelection;
+        let versusTxt = "Human: " + humanSelection + " vs. " + "Computer: " + computerSelection;
+        let scoresTxt = "Human: " + humanScore + " vs. " + "Computer: " + computerScore;
 
         console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
         //console.log("Human: " + humanSelection + " vs. " + "Computer: " + computerSelection);
-        console.log("Human: " + humanScore + " vs. " + "Computer: " + computerScore);
+        //console.log("Human: " + humanScore + " vs. " + "Computer: " + computerScore);
 
         
+        updateDiv();
+        versus.append(versusTxt);
+        scores.append(scoresTxt);
+
         playRound(humanSelection, computerSelection);
 
         count++;
     }
     else {
+        updateDiv();
         results.append("game over");
     }
+
+    //checkScore();
 }
 
+// clears divs
 function updateDiv(){
-
+    results.replaceChildren();
+    versus.replaceChildren();
+    scores.replaceChildren();
 }
 
 let humanScore = 0;
@@ -131,6 +142,8 @@ let computerSelection;
 console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
 
 const results = document.querySelector("#result");
+const versus = document.querySelector("#versus");
+const scores = document.querySelector("#scores");
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
