@@ -1,3 +1,65 @@
+html {
+    padding: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: thistle;
+}
+
+div {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    padding: 25px;
+    border: 1px solid rgb(150, 100, 150);
+    border-radius: 15px;
+    min-height: 450px;
+}
+
+.divider {
+    color: coral;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
 #round {
     background-color: plum;
+}
+
+#versus {
+    background-color: thistle;
+}
+
+#result {
+    background-color: mistyrose;
+}
+
+#scores {
+    background-color: coral;
+}
+
+button {
+    border: 0;
+    padding: 10px;
+    background-color: plum;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: coral;
 }

@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissors Game</title>
-    <link rel="stylesheet" src="/style.css" />
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock, Paper, Scissors Game | dganon</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
     <body>
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+        <div class="container">
+            <h1>Rock, Paper, Scissors Game</h1>
 
-        <div id="round">
-            ★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★
+            <p class="divider">★☆★☆★☆★</p>
+
+            <div id="round">
+                ★☆★☆★☆★ Game Start ★☆★☆★☆★
+                <p>Press a button below to start a game.</p>
+            </div>
+
+            <div id="versus"></div>
+            <div id="result"></div>
+            <div id="scores"></div>
+
+            <div class="buttons">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </div>
         </div>
-
-        <div id="versus"></div>
-        <div id="result"></div>
-        <div id="scores"></div>
+        
 
         <script src="script.js"></script>
     </body>

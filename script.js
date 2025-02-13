@@ -32,38 +32,42 @@ function getHumanChoice(){
     }
 }
 
-// lets game be played in rounds
 function playRound(humanChoice, computerChoice){
     if (humanChoice === "rock" && computerChoice === "paper"){
-        console.log("You lose! Paper beats rock!");
+        results.append("You lose! Paper beats rock!");
         computerScore++;
     }
     else if (humanChoice === "rock" && computerChoice === "scissors") {
-        console.log("You win! Rock beats scissors!");
+        results.append("You win! Rock beats scissors!");
         humanScore++;
     }
     else if (humanChoice === "paper" && computerChoice === "scissors"){
-        console.log("You lose! Scissors beats paper!");
+        results.append("You lose! Scissors beats paper!");
         computerScore++;
     }
     else if (humanChoice === "paper" && computerChoice === "rock"){
-        console.log("You win! Paper beats rock!");
+        results.append("You win! Paper beats rock!");
         humanScore++;
     }
     else if (humanChoice === "scissors" && computerChoice === "rock"){
-        console.log("You lose! Rock beats scissors!");
+        results.append("You lose! Rock beats scissors!");
         computerScore++;
     }
     else if (humanChoice === "scissors" && computerChoice === "paper"){
-        console.log("You win! Scissors beats paper!");
+        results.append("You win! Scissors beats paper!");
         humanScore++;
     }
     else if (humanChoice === computerChoice){
         results.append("It's a tie. Try again!");
     }
+
+    console.log("Human: " + humanScore + " ★ " + "Computer: " + computerScore);
+    let scoresTxt = "Human: " + humanScore + " ★ " + "Computer: " + computerScore;
+    scores.append(scoresTxt);
 }
 
 /*
+// first playGame() functionality without UI 
 function playGame(){
     console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
 
@@ -97,35 +101,35 @@ function checkScore(){
     else {
         winner = "Congratulations, human!";
     }
+    console.log("★☆★☆★☆★ END GAME ★☆★☆★☆★");
     return winner;
-    console.log("★☆★☆★☆★ END ROUND ★☆★☆★☆★");
 }
 
 function playGame(humanSelection) {
     let computerSelection = getComputerChoice();
-    let versusTxt = "Human: " + humanSelection + " vs. " + "Computer: " + computerSelection;
-    let scoresTxt = "Human: " + humanScore + " vs. " + "Computer: " + computerScore;
+    let versusTxt = "Human: " + humanSelection + " ★ " + "Computer: " + computerSelection;
+    let scoresTxt = "Human: " + humanScore + " ★ " + "Computer: " + computerScore;
     
     if(count < 6) {
         console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
-        console.log("Human: " + humanSelection + " vs. " + "Computer: " + computerSelection);
-        console.log("Human: " + humanScore + " vs. " + "Computer: " + computerScore);
+        console.log("Human: " + humanSelection + " ★ " + "Computer: " + computerSelection);
         
         updateDiv();
+        round.append("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
         versus.append(versusTxt);
-        scores.append(scoresTxt);
 
         playRound(humanSelection, computerSelection);
 
-        round.append("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
-
         count++;
     }
-    else {
+    else if(count = 6) {
         updateDiv();
         round.append("★☆★☆★☆★ GAME OVER ★☆★☆★☆★");
         results.append(checkScore());
         scores.append(scoresTxt);
+    }
+    else {
+        
     }
 }
 
@@ -147,10 +151,10 @@ let computerSelection;
 
 console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
 
-const results = document.querySelector("#result");
-const versus = document.querySelector("#versus");
-const scores = document.querySelector("#scores");
 const round = document.querySelector("#round");
+const versus = document.querySelector("#versus");
+const results = document.querySelector("#result");
+const scores = document.querySelector("#scores");
 
 const buttons = document.querySelectorAll("button");
 
