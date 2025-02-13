@@ -1,6 +1,6 @@
 html {
     padding: 100px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -8,6 +8,13 @@ body {
     justify-content: center;
     align-items: center;
     background-color: thistle;
+}
+
+h1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 32px;
+    color: rgb(97, 30, 97);
 }
 
 div {
@@ -58,6 +65,8 @@ button {
     padding: 10px;
     background-color: plum;
     border-radius: 10px;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 button:hover {
