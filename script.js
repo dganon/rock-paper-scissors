@@ -124,12 +124,9 @@ function playGame(humanSelection) {
     }
     else if(count = 6) {
         updateDiv();
-        round.append("★☆★☆★☆★ GAME OVER ★☆★☆★☆★");
+        round.append("GAME OVER");
         results.append(checkScore());
         scores.append(scoresTxt);
-    }
-    else {
-        
     }
 }
 
@@ -165,7 +162,3 @@ buttons.forEach((button) => {
         playGame(btnTxt);
     });
 });
-
-
-
-//playGame();
