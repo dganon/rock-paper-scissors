@@ -109,7 +109,10 @@ function playGame(humanSelection) {
     let computerSelection = getComputerChoice();
     let versusTxt = "Human: " + humanSelection + " ★ " + "Computer: " + computerSelection;
     let scoresTxt = "Human: " + humanScore + " ★ " + "Computer: " + computerScore;
-    
+    let logTxt = document.createElement("p");
+
+    logTxt.textContent = "ROUND " + count + ": " + humanSelection + " vs. " + computerSelection + ;
+
     if(count < 6) {
         console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
         console.log("Human: " + humanSelection + " ★ " + "Computer: " + computerSelection);
@@ -120,6 +123,8 @@ function playGame(humanSelection) {
 
         playRound(humanSelection, computerSelection);
 
+        log.appendChild(logTxt);
+
         count++;
     }
     else if(count = 6) {
@@ -127,6 +132,9 @@ function playGame(humanSelection) {
         round.append("GAME OVER");
         results.append(checkScore());
         scores.append(scoresTxt);
+    }
+    else {
+        log.removeChild();
     }
 }
 
@@ -141,7 +149,7 @@ function updateDiv(){
 let humanScore = 0;
 let computerScore = 0;
 let count = 1;
-const clear = "";
+const WINNING_SCORE = 5;
 
 let humanSelection;
 let computerSelection;
@@ -152,6 +160,7 @@ const round = document.querySelector("#round");
 const versus = document.querySelector("#versus");
 const results = document.querySelector("#result");
 const scores = document.querySelector("#scores");
+const log = document.querySelector("#log");
 
 const buttons = document.querySelectorAll("button");
 
