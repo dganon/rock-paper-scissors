@@ -1,3 +1,34 @@
+let humanSelection;
+let computerSelection;
+let humanScore = 0;
+let computerScore = 0;
+const WINNING_SCORE = 5;
+let count = 1;
+
+console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
+
+const round = document.querySelector("#round");
+const versus = document.querySelector("#versus");
+const results = document.querySelector("#result");
+const scores = document.querySelector("#scores");
+const log = document.querySelector("#log");
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let btnTxt = button.textContent.toLowerCase();
+
+        if (humanScore < WINNING_SCORE && computerScore < WINNING_SCORE) {
+            console.log(humanScore + " " + computerScore);
+            playGame(btnTxt);
+        }
+        else {
+            checkScore();
+        }
+    });
+});
+
 // computer randomly returns rock, paper, or scissors
 function getComputerChoice(){
     let choice;
@@ -14,22 +45,25 @@ function getComputerChoice(){
     }
 }
 
-// takes user choice and returns it
-function getHumanChoice(){
-    let choice = prompt("Rock,  paper, or scissors?", "");
+function playGame(humanSelection) {
+    let computerSelection = getComputerChoice();
+    let versusTxt = "Human: " + humanSelection + " ★ " + "Computer: " + computerSelection;
+    let logTxt = document.createElement("p");
 
-    if (choice.toLowerCase() === "rock"){
-        return choice = "rock";
-    }
-    else if(choice.toLowerCase() === "paper"){
-        return choice = "paper";
-    }
-    else if(choice.toLowerCase() === "scissors"){
-        return choice = "scissors";
-    }
-    else{
-        return choice = "Input not valid. Please pick rock, paper, or scissors!"
-    }
+    logTxt.textContent = "ROUND " + count + ": " + humanSelection + " vs. " + computerSelection;
+
+    console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
+    console.log("Human: " + humanSelection + " ★ " + "Computer: " + computerSelection);
+
+    // clears divs and updates with rounds information and player selections
+    updateDiv();
+    round.append("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
+    versus.append(versusTxt);
+    log.appendChild(logTxt);
+
+    playRound(humanSelection, computerSelection);
+
+    count++;
 }
 
 function playRound(humanChoice, computerChoice){
@@ -60,82 +94,11 @@ function playRound(humanChoice, computerChoice){
     else if (humanChoice === computerChoice){
         results.append("It's a tie. Try again!");
     }
-
-    console.log("Human: " + humanScore + " ★ " + "Computer: " + computerScore);
     let scoresTxt = "Human: " + humanScore + " ★ " + "Computer: " + computerScore;
     scores.append(scoresTxt);
-}
 
-/*
-// first playGame() functionality without UI 
-function playGame(){
-    console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
+    console.log("Human: " + humanScore + " ★ " + "Computer: " + computerScore);
 
-    for(count; count<6; count++){
-        console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
-        humanSelection = getHumanChoice();
-        computerSelection = getComputerChoice();
-        console.log("Human: " + humanSelection + " vs. " + "Computer: " + computerSelection);
-        playRound(humanSelection, computerSelection);
-
-        console.log("Human: " + humanScore);
-        console.log("Computer: " + computerScore);
-    }
-
-    checkScore();
-}
-*/
-
-function checkScore(){
-    console.log("★☆★ RESULTS ★☆★");
-    console.log("Human: " + humanScore + " Computer: " + computerScore);
-
-    let winner = "";
-
-    if(humanScore < computerScore){
-        winner = "Sorry, human. Computer wins this game!";
-    }
-    else if (humanScore === computerScore){
-        winner = "No winners this game. Try again!";
-    }
-    else {
-        winner = "Congratulations, human!";
-    }
-    console.log("★☆★☆★☆★ END GAME ★☆★☆★☆★");
-    return winner;
-}
-
-function playGame(humanSelection) {
-    let computerSelection = getComputerChoice();
-    let versusTxt = "Human: " + humanSelection + " ★ " + "Computer: " + computerSelection;
-    let scoresTxt = "Human: " + humanScore + " ★ " + "Computer: " + computerScore;
-    let logTxt = document.createElement("p");
-
-    logTxt.textContent = "ROUND " + count + ": " + humanSelection + " vs. " + computerSelection + ;
-
-    if(count < 6) {
-        console.log("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
-        console.log("Human: " + humanSelection + " ★ " + "Computer: " + computerSelection);
-        
-        updateDiv();
-        round.append("★☆★☆★☆★ ROUND " + count + " ★☆★☆★☆★");
-        versus.append(versusTxt);
-
-        playRound(humanSelection, computerSelection);
-
-        log.appendChild(logTxt);
-
-        count++;
-    }
-    else if(count = 6) {
-        updateDiv();
-        round.append("GAME OVER");
-        results.append(checkScore());
-        scores.append(scoresTxt);
-    }
-    else {
-        log.removeChild();
-    }
 }
 
 // clears divs
@@ -146,28 +109,23 @@ function updateDiv(){
     round.replaceChildren();
 }
 
-let humanScore = 0;
-let computerScore = 0;
-let count = 1;
-const WINNING_SCORE = 5;
+function checkScore(){
+    let winner = "";
+    let scoresTxt = "Human: " + humanScore + " ★ " + "Computer: " + computerScore;
 
-let humanSelection;
-let computerSelection;
+    if(computerScore === WINNING_SCORE){
+        winner = "Sorry. Computer wins this game!";
+    }
+    else if (humanScore === WINNING_SCORE){
+        winner = "You beat the computer. Congratulations!";
+    }
+    
+    updateDiv();
+    round.append("GAME OVER");
+    scores.append(scoresTxt);
+    results.append(winner);
 
-console.log("★☆★☆★☆★ Rock, Paper, Scissors Game ★☆★☆★☆★");
-
-const round = document.querySelector("#round");
-const versus = document.querySelector("#versus");
-const results = document.querySelector("#result");
-const scores = document.querySelector("#scores");
-const log = document.querySelector("#log");
-
-const buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        let btnTxt = button.textContent.toLowerCase();
-
-        playGame(btnTxt);
-    });
-});
+    console.log("★☆★ RESULTS ★☆★");
+    console.log("Human: " + humanScore + " Computer: " + computerScore);
+    console.log("★☆★☆★☆★ END GAME ★☆★☆★☆★");
+}
